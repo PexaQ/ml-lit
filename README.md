@@ -6,7 +6,7 @@ The app turns the notebook result into an interactive web interface. Users can t
 
 ## What the App Does
 
-- Loads the prepared text-and-label dataset snapshot from `data/prepared_dataset.csv`.
+- Loads the prepared text-and-label dataset snapshot from `data/prepared_dataset.csv` locally, or from compressed chunk files on deployment.
 - Trains the final tuned text classifier at startup.
 - Uses raw word TF-IDF and character TF-IDF features.
 - Applies the tuned decision offsets exported from the notebook.
@@ -29,6 +29,7 @@ The notebook is good for analysis, but a Streamlit app is easier to demonstrate.
 streamlit_app.py          Main Streamlit app
 requirements.txt          Python dependencies for deployment
 data/                     CSV files used by the app
+data/prepared_dataset.csv.gz.b64.*  Compressed dataset chunks for GitHub deployment
 .streamlit/config.toml    Streamlit theme/configuration
 ```
 
