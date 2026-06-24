@@ -9,3 +9,4 @@ env/
 *.zip
 colab_ml_outputs*/
 colab_ml_outputs 2/
+data/prepared_dataset.csv
