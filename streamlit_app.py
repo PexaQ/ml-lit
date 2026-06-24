@@ -253,7 +253,7 @@ def overview_page(tables: dict[str, pd.DataFrame]) -> None:
     left, right = st.columns([1, 1])
     with left:
         st.subheader("Label distribution")
-        st.dataframe(tables["label_distribution"], use_container_width=True, hide_index=True)
+        st.dataframe(tables["label_distribution"], width="stretch", hide_index=True)
     with right:
         st.subheader("Label chart")
         show_bar_chart(tables["label_distribution"], "Label", "Jumlah")
@@ -299,7 +299,7 @@ def classifier_page() -> None:
         shown["Decision offset"] = shown["Decision offset"].round(4)
         shown["Adjusted score"] = shown["Adjusted score"].round(4)
         shown["Relative confidence"] = (shown["Relative confidence"] * 100).round(2).astype(str) + "%"
-        st.dataframe(shown, use_container_width=True, hide_index=True)
+        st.dataframe(shown, width="stretch", hide_index=True)
 
         st.info(
             "The final label is chosen from the highest adjusted decision score. "
@@ -315,7 +315,7 @@ def evaluation_page(tables: dict[str, pd.DataFrame]) -> None:
     )
 
     st.subheader("All-method comparison")
-    st.dataframe(tables["tuning"], use_container_width=True, hide_index=True)
+    st.dataframe(tables["tuning"], width="stretch", hide_index=True)
 
     chart_col1, chart_col2 = st.columns(2)
     with chart_col1:
@@ -332,14 +332,14 @@ def evaluation_page(tables: dict[str, pd.DataFrame]) -> None:
     st.bar_chart(metric_plot)
 
     st.subheader("Classification report")
-    st.dataframe(tables["classification"], use_container_width=True, hide_index=True)
+    st.dataframe(tables["classification"], width="stretch", hide_index=True)
     st.info(
         "The full notebook contains the saved confusion matrix image. "
         "This deployed app focuses on interactive prediction and metric tables."
     )
 
     with st.expander("Baseline model comparison"):
-        st.dataframe(tables["model_comparison"], use_container_width=True, hide_index=True)
+        st.dataframe(tables["model_comparison"], width="stretch", hide_index=True)
 
 
 def workflow_page() -> None:
