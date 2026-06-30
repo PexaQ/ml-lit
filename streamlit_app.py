@@ -266,19 +266,18 @@ def classifier_page() -> None:
         "The model uses decision scores, so the confidence values are relative, not calibrated probabilities."
     )
 
-    examples = [
-        "Kasian gua lihat anak anak nya kehilangan ibu di umur segitu",
-        "Lau siape mpruy",
-        "Wkwkwk kocak banget ini orang",
-        "Dasar goblok, komentar lu sampah banget",
-    ]
-    selected_example = st.selectbox("Example comment", [""] + examples)
-    default_text = selected_example or "Tulis komentar di sini..."
-    text = st.text_area("Comment text", value=default_text, height=130)
+    with st.form("classifier_form"):
+        text = st.text_area(
+            "Comment text",
+            value="",
+            placeholder="Type or paste a comment here...",
+            height=150,
+        )
+        submitted = st.form_submit_button("Predict label", type="primary")
 
-    if st.button("Predict label", type="primary"):
+    if submitted:
         cleaned = text.strip()
-        if not cleaned or cleaned == "Tulis komentar di sini...":
+        if not cleaned:
             st.warning("Please enter a comment first.")
             return
 
